@@ -1,0 +1,2 @@
+# checklist_pc_windows
+检查Windows主机的日志端口和服务
